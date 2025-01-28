@@ -17,12 +17,12 @@ browser, with no data transmitted or stored. The brunsli coded is
 powered by web assembly (WASM) technology \[5\].
 
 Brunsli has been incorporated directly into GDAL \[6\]. If the
-GDAL_USE_BRUNSLI flag is set to on, brunsli compression is applied. The
+GDAL\_USE\_BRUNSLI flag is set to on, brunsli compression is applied. The
 flag defaults to ON if brunsli is found. Besides this flag, all that
-needs to be specified is the BRUNSLI_INCLUDE_DIR, a path to a directory
+needs to be specified is the BRUNSLI\_INCLUDE\_DIR, a path to a directory
 with the brunsli/decode.h and brunsli/encode.h header files, as well as
-BRUNSLI_ENC_LIB (path to the brunslienc-c library file) and
-BRUNSLI_DEC_LIB (path to the brunslidec-c library file).
+BRUNSLI\_ENC\_LIB (path to the brunslienc-c library file) and
+BRUNSLI\_DEC\_LIB (path to the brunslidec-c library file).
 
 ### Conversion via *mod_brunsli* \[4\]
 
@@ -57,10 +57,10 @@ using brunsli, which compressed the larger .PJG file by 25.04%, and the
 
 ** **![](./figures/brunsli/media/image1.png)
 
-*[Figure 1]{.underline}: Brunsli-compressed JPEG, after conversion via
+*_Figure 1_: Brunsli-compressed JPEG, after conversion via
 brunsli.dev \[3\].*
 
-Original MRF file: GOES-East_B13_LL_v0_NRT_ZENJPEG2021100000000.mrf
+Original MRF file: GOES-East\_B13\_LL\_v0\_NRT\_ZENJPEG2021100000000.mrf
 
 ### **Brunsli properties**
 
@@ -111,16 +111,16 @@ For server-side performance analysis, as long as brunsli has been
 enabled upon building GDAL, gdal_translate can be invoked to produce a
 brunsli-compressed MRF:
 
-> **gdal_translate - q -f MRF -outsize \<size_x\> \<size_y\>
+> **gdal\_translate - q -f MRF -outsize \<size_x\> \<size_y\>
 > \<input_file\> output.mrf**
 
 ![](./figures/brunsli/media/image2.png)
 
-*[Table 1]{.underline}. MRF and JPEG compression rates using Brunsli on
+*_Table 1_. MRF and JPEG compression rates using Brunsli on
 GOES data, as tested with 'mrfgen' within an OnEarth container running
 on a Mac M1 machine.*
 
-Original MRF file: GOES-East_B13_LL_v0_NRT_ZENJPEG2021100000000.mrf
+Original MRF file: GOES-East\_B13\_LL\_v0\_NRT\_ZENJPEG2021100000000.mrf
 
 ## **References**
 

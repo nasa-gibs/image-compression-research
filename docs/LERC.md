@@ -21,7 +21,7 @@ LERC can be used in the following scenarios \[1\]:
     (jpeg and relatives). The max coding error per pixel can be large.
 
 -   To prioritize control over the max coding error per pixel
-    (elevation, scientific data, medical image data, \...).
+    (elevation, scientific data, medical image data, etc).
 
 In the second case, data is often compressed using lossless methods,
 such as LZW, gzip, and others. The compression ratios achieved are often
@@ -34,11 +34,11 @@ so large that the decoded image may come out flat.
 ### **Main principle (taken directly from reference \[2\])**
 
 This section demonstrates how the same block of 4x4 pixels with floating
-point values gets Lerc encoded using two different values for MaxZError,
+point values gets LERC encoded using two different values for MaxZError,
 the user specified coding error tolerance. The following image is taken
 directly from the LERC patent, in order to explain in detail. 
 
-*[Figure 1]{.underline}: Example of LERC Encoding For One Block Using
+*_Figure 1_: Example of LERC Encoding For One Block Using
 MaxZError = 0.01 m \[2\]*
 
 In some embodiments, LERC encoding can be performed using four
@@ -116,14 +116,10 @@ at <https://esri.github.io/lerc/doc/MORE.html>.
 
 -   this LERC package \[1\] can read all (legacy) codec versions of
     LERC, such as LERC1, LERC2 v1 to v5, and the current LERC2 v6. It
-    always writes the latest stable version. *[Important
-    note]{.underline}: always use LERC compression version V1, as higher
+    always writes the latest stable version. *_Important
+    note_: NASA GIBS always uses LERC compression version V1, as higher
     versions are different algorithm/code base and may not work properly
-    as a raster format for MRFs.  Basically, there are multiple versions
-    of LERC, Version 1 and everything else, where V1 is Lucian's branch
-    and is not connected to V2; Lucian actively maintains V1 and that is
-    the branch that is in GDAL directly. We generate our MRFs with
-    version V1, and that's what mrfgen.py uses.*
+    as a raster format for MRFs.*
 
 -   LERC supports sparse images or raster with many pixels invalid or
     empty. 
@@ -138,33 +134,33 @@ at <https://esri.github.io/lerc/doc/MORE.html>.
 
 ### **LERC precision parameter**
 
-The main tunable parameter for LERC is LERC_PREC. If LERC_PREC is set to
+The main tunable parameter for LERC is LERC\_PREC. If LERC\_PREC is set to
 0, LERC is lossless compression algorithm.  In most cases, to achieve
-high compression ratios users advised to set LERC_PREC to non-zero value
+high compression ratios users advised to set LERC\_PREC to non-zero value
 for a lossy compression.  LERC provides a guarantee: the max error in a
-pixel value after compression is bound by parameter set in LERC_PREC.
+pixel value after compression is bound by parameter set in LERC\_PREC.
  This ability to objectively estimate the compression error makes MRF
 LERC-compressed rasters great for science data analysis.  The user can
 know *exactly* how accurate (within 0.1 for example), the value after
 compression will be.
 
-It is crucial to set LERC_PREC to the value that is appropriate for the
+It is crucial to set LERC\_PREC to the value that is appropriate for the
 input data.  Simplified understanding of how LERC compression works is
-that the pixel value will be rounded to the nearest 2 \* LERC_PREC_VALUE
+that the pixel value will be rounded to the nearest 2 \* LERC\_PREC\_VALUE
 then losslessly compressed.  An example, say input pixel value is a
-32-bit float data and the maximum error is set to LERC_PREC=0.1, then
+32-bit float data and the maximum error is set to *LERC_PREC* = 0.1, then
 the lossy-compressed pixel value after decompression is guaranteed to be
 within 0.1 of the original value.
 
 The precision can be set as both an absolute value and as a percentage.
 Care must be taken when specifying this value, based on the range of
 values for the data. For example, if input values range between 10e-6 to
-10e-9, then a LERC_PREC value of 0.1 would set those very small values
+10e-9, then a LERC\_PREC value of 0.1 would set those very small values
 to 0.1! For such cases, a percentage value should be used instead
 (verify that this is true, and that it's not actually that percentages
 should not be used with small numbers). The values do not need to be
 shifted in any way (or scaled to a different range) prior to applying
-LERC_PREC.
+LERC\_PREC.
 
 **Notes on precision and floating-point data**
 
@@ -173,7 +169,7 @@ precision in general. LERC is not designed to handle 32-bit precision
 directly, so the trick is simply to truncate it. For instance, 32-bit
 floating point data can be truncated to 12-bit integer. This works well
 for many applications; for example, we generally don't need full 32-bit
-precision for height values. From Oleg: LERC1 works internally on
+precision for height values. LERC1 works internally on
 integer data, which is supported up to 24 bits (32 bits not yet
 supported). Therefore, input floating point data must first be converted
 to INT, and in decompression it must be converted back to floating
@@ -216,8 +212,7 @@ references for this topic in general.
 
     -   NC4 files available at \[4\]
 
--   VIIRS for sparse data tests \[7\], and
-    <https://portal.nccs.nasa.gov/datashare/viirs/data/Level2/VJ114IMG/2022/005/>
+-   VIIRS for sparse data tests \[7\], especifically [this data](https://portal.nccs.nasa.gov/datashare/viirs/data/Level2/VJ114IMG/2022/005/)
 
 ## **Benchmarks**
 
@@ -238,10 +233,10 @@ for performance evaluation. GDAL should be invoked as follows:
 
 ![](./figures/lerc/media/image1.png)
 
-*[Table 1]{.underline}. Compression file sizes and average timing for
+*_Table 1_. Compression file sizes and average timing for
 LERC vs LZW compression. LERC compression rates outperform those of LZW
 even when the precision parameter (LERC_PREC) is set to 0, and is
-increasingly faster when the precision value increases**.** At 0, the
+increasingly faster when the precision value increases. At 0, the
 algorithm looks for the best block size, compressing the data multiple
 times (similarly to PNG), which makes things slower.*
 
@@ -252,7 +247,7 @@ latitude resolution: 0.25; longitude resolution: 0.25*
 
 ![](./figures/lerc/media/image2.png)
 
-*[Table 2]{.underline}. Compression rates and timing for VIIRS data,
+*_Table 2_. Compression rates and timing for VIIRS data,
 using LERC (with zero precision) versus LZW compression. Even at zero
 precision, speeds increase relative to LZW as a function of data
 sparsity.*
@@ -261,7 +256,7 @@ sparsity.*
 
 ![](./figures/lerc/media/image3.png)![](./figures/lerc/media/image4.png)
 
-*[Figure 1]{.underline}. MRF insert performance. Top: timing for LERC vs
+*_Figure 1_. MRF insert performance. Top: timing for LERC vs
 TIFF as tiles are progressively inserted into an MRF. Bottom: respective
 MRF file sizes. Repetitive patterns are due to varying amounts of NoData
 values per tile when going around the globe (each row of tiles). For
@@ -275,7 +270,7 @@ algorithm so far.
 
 ![](./figures/lerc/media/image5.png)
 
-*[Table 3]{.underline}. Timing numbers for rendering a LERC layer onto
+*_Table 3_. Timing numbers for rendering a LERC layer onto
 the client once a tile request is received (averaged over 40 runs),
 obtained by zooming out and panning the whole globe and averaging across
 multiple dates. Timing includes converting raw high-precision data into
@@ -287,9 +282,9 @@ an image. Open Layers was used.*
 
 ![](./figures/lerc/media/image6.png)![](./figures/lerc/media/image7.png)
 
-*[Figure 2]{.underline}. Tile response time statistics for LERC vs PNG
-layers (left) and corresponding percentiles (right). **Times are
-comparable to current GIBS performance with PNG tiles**. Tests were run
+*_Figure 2_. Tile response time statistics for LERC vs PNG
+layers (left) and corresponding percentiles (right). Times are
+comparable to current GIBS performance with PNG tiles. Tests were run
 in an OnEarth instance within AWS and connected directly to the load
 balancer, to minimize network latency.*
 
@@ -310,23 +305,23 @@ GEOS-CF.v01.rpl.aqc_tavg_1hr_g1440x721_v1.20231112_0030z.nc4
 
 *Data ranges and visualization (per QGIS \[5\])*:
 
-[CO]{.underline}: \[0, 0.000003\]
+_CO_: \[0, 0.000003\]
 
 ![](./figures/lerc/media/image8.png)
 
-[NO2]{.underline}: \[0, 0\]\*
+_NO2_: \[0, 0\]\*
 
 ![](./figures/lerc/media/image9.png)
 
-[O3]{.underline}: \[0, 0\]\*
+_O3_: \[0, 0\]\*
 
 ![](./figures/lerc/media/image10.png)
 
-[PM25_RH35_GCC]{.underline}: \[0.269339, 696.068909\]
+_PM25\_RH35\_GCC_: \[0.269339, 696.068909\]
 
 ![](./figures/lerc/media/image11.png)
 
-[SO2]{.underline}: \[0, 0\]\*
+_SO2_: \[0, 0\]\*
 
 ![](./figures/lerc/media/image12.png)
 
@@ -335,46 +330,31 @@ GEOS-CF.v01.rpl.aqc_tavg_1hr_g1440x721_v1.20231112_0030z.nc4
 1.  Create an uncompressed 32-bit TIFF for each variable from the input
     NC4 file, for example (see nc2tiff.sh):
 
-**gdal_translate
-NETCDF:\"GEOS-CF.v01.rpl.aqc_tavg_1hr_g1440x721_v1.20231112_0030z.nc4\":CO
-GEOS-CF.v01.rpl.aqc_tavg_1hr_g1440x721_v1.20231112_0030z_CO.tiff**
+**gdal\_translate
+NETCDF:\"GEOS-CF.v01.rpl.aqc\_tavg\_1hr\_g1440x721\_v1.20231112\_0030z.nc4\":CO
+GEOS-CF.v01.rpl.aqc\_tavg\_1hr\_g1440x721\_v1.20231112\_0030z_CO.tiff**
 
       2. For comparison purposes, create an LZW-compressed MRF for each,
 for example (see lzw_compression.sh):
 
-**gdal_translate -q -of MRF -co COMPRESS=TIF  -co OPTIONS=\"DEFLATE=ON,
+**gdal\_translate -q -of MRF -co COMPRESS=TIF  -co OPTIONS=\"DEFLATE=ON,
 LZW=ON\" -outsize 1440 721
-GEOS-CF.v01.rpl.aqc_tavg_1hr_g1440x721_v1.20231112_0030z_CO.tiff
-GEOS-CF.v01.rpl.aqc_tavg_1hr_g1440x721_v1.20231112_0030z_CO_LZW.mrf**
+GEOS-CF.v01.rpl.aqc\_tavg\_1hr\_g1440x721\_v1.20231112\_0030z\_CO.tiff
+GEOS-CF.v01.rpl.aqc\_tavg\_1hr_g1440x721\_v1.20231112\_0030z\_CO\_LZW.mrf**
 
       3. \*Apply LERC compression, keeping in mind the following. For
-variables like PM25_RH35_GCC, with data ranges in \[0, 10e+3\], a value
-of LERC_PREC=0.001 works well, but not so much for data with ranges
+variables like PM25\_RH35\_GCC, with data ranges in \[0, 10e+3\], a value
+of LERC\_PREC=0.001 works well, but not so much for data with ranges
 \[10e-11, 10e-9\], for example. For such data, the correct value for
-LERC_PREC should be on the order of 10e-13. For this analysis, LERC_PREC
+LERC\_PREC should be on the order of 10e-13. For this analysis, LERC_PREC
 vales appropriate for each dataset were chosen and listed in parenthesis
-in Table 1.1.
+in Table 4.
 
-  --------------------------------------------------------------------------------------------------------------
-  **Variable**    **Data range** **LERC_PREC=0**   **LERC_PREC=0.001**   **LERC_PREC=adaptive**   **LZW (.ptf
-                                                                                                  extension)**
-  --------------- -------------- ----------------- --------------------- ------------------------ --------------
-  CO              \[0,           1015307           4181                  15121 (10e-8)            1028223
-                  0.000003\]                                                                      
+  
+![](./figures/lerc/media/image13.png)
+\* = \[10e-11, 10e-9\]
 
-  NO2             \[0, 0\]\*     2046416           4161                  550120 (10e-13)          2058201
-
-  O3              \[0, 0\]\*     1253425           4076                  1448138 (10e-13)         1269032
-
-  PM25_RH35_GCC   \[0.269339,    1795600           1330819               1796318 (0.001)          1808247
-                  696.068909\]                                                                    
-
-  SO2             \[0, 0\]\*     1982359           4079                  4079 (10e-13)            2009949
-  --------------------------------------------------------------------------------------------------------------
-
--   \* = \[10e-11, 10e-9\]
-
-*[Table 1.1]{.underline}: File sizes in bytes for LERC at different
+*_Table 4_: File sizes in bytes for LERC at different
 precision values versus LZW. Note that LERC outperforms LZW overall as
 far as compression rate.*
 

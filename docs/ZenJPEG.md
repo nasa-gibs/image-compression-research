@@ -74,7 +74,7 @@ and compression timing. All numbers were averaged across multiple runs.
 
 ![](./figures/zenjpeg/media/image1.png)
 
-*[Table 1]{.underline}. ZenJPEG compression performance versus PNG, for
+*_Table 1_. ZenJPEG compression performance versus PNG, for
 the GOES (left) and OCI-PACE (right) datasets.*
 
 ## **References**

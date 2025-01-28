@@ -18,7 +18,7 @@
 
 ![](./figures/comparison/media/image1.png)
 
-*[Figure 1]{.underline}. Histogram of pixel values at different LERC
+*_Figure 1_. Histogram of pixel values at different LERC
 precision values. Image degradation occurs if an inappropriate value is
 chosen*
 
@@ -46,7 +46,7 @@ chosen*
 -   Specific only to MRFs and not to other GDAL-supported formats since
     the mask is generated and applied at the MRF codec level
 
-**[Conclusion]{.underline}: **optimal handling of compression within our
+**Conclusion: **optimal handling of compression within our
 architecture should be handled on a case-by-case basis: LERC is better
 for science data, brunsli for general JPEG compression, and ZenJPEG for
 handling *NoData* values. **As an example, MODIS, VIIRS, and GOES

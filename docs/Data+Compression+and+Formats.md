@@ -33,7 +33,7 @@ compression algorithms will be performed.
 
 A poster was presented at AGU 2024 highlighting our work on compression,
 which can be found
-[here](file:////download/attachments/415367448/agu-2024-v0.0.3.pdf%3fversion=1&modificationDate=1736791928115&api=v2). 
+[here](./figures/agu-2024-v0.0.3.pdf). 
 
 ## **GIBS and the Meta Raster Format (MRF) \[1\]**
 
@@ -54,7 +54,7 @@ which can be found
 
 ![](./figures/intro/media/image1.png)
 
-*[Figure 1]{.underline}. GIBS request serving with OnEarth and ingestion
+*_Figure 1_. GIBS request serving with OnEarth and ingestion
 pipeline. Compression occurs during MRF generation (circled in red).
 MRFs provide access to an indexed heap of regular tiles (blocks)
 controlled by an XML file, usually organized as a pyramid of overviews,
@@ -66,30 +66,30 @@ Each evaluated algorithm is summarized below, and full benchmarking
 information can be found at the below links:
 
 -   [**LERC summary and
-    benchmarks**](https://wiki.earthdata.nasa.gov/display/VISLABS/LERC)
+    benchmarks**](./LERC.md)
 
 -   [**Brunsli summary and
-    benchmarks**](https://wiki.earthdata.nasa.gov/display/VISLABS/Brunsli)
+    benchmarks**](./Brunsli.md)
 
 -   [**ZenJPEG summary and
-    benchmarks**](https://wiki.earthdata.nasa.gov/display/VISLABS/LERC)
+    benchmarks**](./ZenJPEG.md)
 
 -   [**Comparisons of each
-    method**](https://wiki.earthdata.nasa.gov/display/VISLABS/Comparisons+of+each+method)
+    method**](./Comparisons+of+each+method.md)
 
 ### Summary
 
-***LERC* (Limited Error Raster Compression)**
+**LERC (Limited Error Raster Compression)**
 
 -   Compression format that can divide a raster into a number of pixel
     blocks, in which each pixel can be quantized and bit stuffed based
     on a number of block statistics, including the per-pixel maximum
     error allowable (zero error yields lossless compression).
 
--   [Usage]{.underline}: LERC handles floating-point data, which enables
+-   _Usage_: LERC handles floating-point data, which enables
     richer scientific analysis
 
-***Brunsli* (JPEG compression)**
+**Brunsli (JPEG compression)**
 
 -   Fast lossless JPEG recompressor, included in the draft for the new
     JPEG XL standard. It preserves data in a more efficient container
@@ -98,17 +98,17 @@ information can be found at the below links:
     be served on-the-fly from a Brunsli MRF via the Apache httpd module
     *mod_brunsli*.
 
--   [Usage]{.underline}: Brunsli can be applied on any JPEG layer to
+-   _Usage_: Brunsli can be applied on any JPEG layer to
     further reduce file size
 
-***ZenJPEG* (JPEG with transparency)**
+**ZenJPEG (JPEG with transparency)**
 
 -   Implementation to enable the correct storage of *NoData* values with
     JPEG for improved lossy compression at 8 or 12 bits per channel,
     basically enabling transparency for JPEGs. The bit mask organized as
     8x8 in 2D; compressed by run-length encoding (RLE).
 
--   [Usage]{.underline}: ZenJPEG results in smaller file sizes for
+-   _Usage_: ZenJPEG results in smaller file sizes for
     layers with *NoData* or transparency values, as opposed to PNGs,
     which results in larger file sizes.
 

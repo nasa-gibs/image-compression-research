@@ -1,4 +1,4 @@
-# data-compression-research
+# Data Compression Research
 
 This repository contains documentation related to data compression research carried out by the NASA GIBS team. 
 

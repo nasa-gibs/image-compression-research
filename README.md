@@ -35,7 +35,7 @@ compression algorithms will be performed.
 
 A poster was presented at AGU 2024 highlighting our work on compression,
 which can be found
-[here](./figures/agu-2024-v0.0.3.pdf). 
+[here](./docs/figures/agu-2024-v0.0.3.pdf). 
 
 ## **GIBS and the Meta Raster Format (MRF) \[1\]**
 

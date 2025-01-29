@@ -41,7 +41,6 @@ turned off \[1\].
 -   Enables the correct storage of NoData values for JPEG data, with
     improved lossy compression at 8 or 12 bits per channel.
 
-** **
 
 ### **ZenJPEG parameters**
 

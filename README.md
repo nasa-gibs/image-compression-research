@@ -1,4 +1,4 @@
-# Data Compression and Formats Research by the GIBS Team
+# Image Compression and Formats Research by the GIBS Team
 
 This repository contains documentation related to data compression research carried out by the NASA GIBS team. 
 
@@ -9,7 +9,7 @@ world, across over 1100 Earth Science data products. GIBS serves as the
 backbone to popular NASA websites such as *Worldview* (web client for
 GIBS imagery) and *Eyes on the Earth*, and has become popular due to its
 straightforward integration into GIS applications such as QGIS and
-ArcGIS. This year, GIBS completed its multi-year transition from an
+ArcGIS. In 2024, GIBS completed its transition from an
 on-premises implementation to a cloud-native implementation, allowing
 for greater scalability to accommodate new Earth Science missions with
 massive amounts of data, such as PACE, SWOT, and NISAR. This transition
@@ -33,7 +33,7 @@ brunsli can compress JPEG images on average 22% with no additional loss.
 A deep dive into the pros, cons, and performance evaluation of these
 compression algorithms will be performed.
 
-A poster was presented at AGU 2024 highlighting our work on compression,
+A poster was presented at the 2024 Fall Meeting of the American Geophysical Union (AGU) highlighting our work on compression,
 which can be found
 [here](./docs/figures/agu-2024-v0.0.3.pdf). 
 
@@ -114,7 +114,7 @@ information can be found at the below links:
     layers with *NoData* or transparency values, as opposed to PNGs,
     which results in larger file sizes.
 
-### **Effect of compression on costs \[2\]**
+### **Effect of compression on costs**
 
 -   Costs associated with data storage, data requests, and
     egress affect costs for AWS S3 and other services. File
@@ -122,7 +122,7 @@ information can be found at the below links:
     LERC, at the expense of precision loss. Egress costs are associated
     with serving data from cloud storage to a client, based on the
     amount of data, the number of requests made against buckets and
-    objects, and the transfer location of the data.
+    objects, and the transfer location of the data. Further details on these costs can be found in \[2\].
 
 ### **Future work (as of early 2025)**
 

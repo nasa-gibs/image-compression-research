@@ -1,6 +1,6 @@
 # Brunsli
 
-## **Introduction **
+## Introduction 
 
 *Brunsli* \[1\] is a fast lossless JPEG recompressor that is included in
 the committee draft of the JPEG XL standard \[2\]. JPEG XL is a
@@ -55,7 +55,7 @@ Figure 1. Table 1 highlights the resulting file size differences when
 using brunsli, which compressed the larger .PJG file by 25.04%, and the
 .JPG by 18.84%.
 
-** **![](./figures/brunsli/media/image1.png)
+![](./figures/brunsli/media/image1.png)
 
 *_Figure 1_: Brunsli-compressed JPEG, after conversion via
 brunsli.dev \[3\].*

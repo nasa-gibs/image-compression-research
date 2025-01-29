@@ -1,6 +1,6 @@
 # LERC
 
-## **Introduction **
+## Introduction 
 
 Limited Error Raster Compression (LERC) is a compression format that can
 divide raster into a number of pixel blocks, in which each pixel can be
@@ -37,6 +37,8 @@ This section demonstrates how the same block of 4x4 pixels with floating
 point values gets LERC encoded using two different values for MaxZError,
 the user specified coding error tolerance. The following image is taken
 directly from the LERC patent, in order to explain in detail. 
+
+![](./figures/lerc/media/image14.png)
 
 *_Figure 1_: Example of LERC Encoding For One Block Using
 MaxZError = 0.01 m \[2\]*
@@ -204,7 +206,6 @@ references for this topic in general.
 
 -   Visualization performance
 
-** **
 
 ### Datasets
 

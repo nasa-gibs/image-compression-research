@@ -36,7 +36,7 @@ chosen*
 
 ## **ZenJPEG**
 
--   Proper management of *NoData *values; zero pixels stored losslessly.
+-   Proper management of *NoData* values; zero pixels stored losslessly.
     No tunable parameters
 
 -   Works for 8 and 12 bits, and even in conjunction with Brunsli
@@ -46,7 +46,7 @@ chosen*
 -   Specific only to MRFs and not to other GDAL-supported formats since
     the mask is generated and applied at the MRF codec level
 
-**Conclusion: **optimal handling of compression within our
+**Conclusion**: optimal handling of compression within our
 architecture should be handled on a case-by-case basis: LERC is better
 for science data, brunsli for general JPEG compression, and ZenJPEG for
 handling *NoData* values. **As an example, MODIS, VIIRS, and GOES

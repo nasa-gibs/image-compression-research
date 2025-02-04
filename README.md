@@ -1,6 +1,6 @@
 # Image Compression and Formats Research by the GIBS Team
 
-This repository contains documentation related to data compression research carried out by the NASA GIBS team. 
+This repository contains documentation related to image compression research carried out by the NASA GIBS team. 
 
 NASA's Global Imagery Browse Services (GIBS) delivers an enormous amount
 of Earth observation imagery through publicly accessible, standard web
@@ -28,7 +28,7 @@ images are converted and compressed, and PNG, whose 8-bit depth incurs
 precision loss. Furthermore, LERC support is a subset of a larger effort
 to investigate potential solutions for imagery to be generated
 dynamically from cloud-optimized data. For compression and visualization
-of JPEG data, ZenJPEG improves the storage of *NoData* values, while
+of JPEG imagery, ZenJPEG improves the storage of *NoData* values, while
 brunsli can compress JPEG images on average 22% with no additional loss.
 A deep dive into the pros, cons, and performance evaluation of these
 compression algorithms will be performed.

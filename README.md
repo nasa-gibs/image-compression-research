@@ -35,7 +35,7 @@ compression algorithms will be performed.
 
 A poster was presented at the 2024 Fall Meeting of the American Geophysical Union (AGU) highlighting our work on compression,
 which can be found
-[here](./docs/figures/agu-2024-v0.0.3.pdf). 
+[here](./docs/figures/agu-2024-v0.0.3.pdf). The corresponding abstract was also published in the ESS Open Archive [here]([https://link-url-here.org](https://essopenarchive.org/users/883835/articles/1262336-storage-optimization-for-nasa-s-massive-archive-of-earth-imagery-and-visualized-data-nasa-s-global-imagery-browse-services?mode=edit)).
 
 ## **GIBS and the Meta Raster Format (MRF) \[1\]**
 
